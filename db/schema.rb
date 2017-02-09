@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208185704) do
+ActiveRecord::Schema.define(version: 20170208233329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,29 +19,35 @@ ActiveRecord::Schema.define(version: 20170208185704) do
     t.string   "artist"
     t.string   "title"
     t.string   "link"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "upvote"
     t.integer  "downvote"
     t.integer  "popularity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "total_votes"
     t.integer  "user_id"
-    t.integer  "list_id"
+  end
+
+  create_table "items_lists", force: :cascade do |t|
+    t.integer "list_id"
+    t.integer "item_id"
   end
 
   create_table "lists", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.integer  "item_id"
+  end
+
+  create_table "lists_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "list_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "user_name"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "item_id"
-    t.integer  "list_id"
   end
 
 end

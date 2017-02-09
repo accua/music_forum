@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   def index
+    @users = User.all
     @lists = List.all
   end
 

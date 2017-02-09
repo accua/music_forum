@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     @item = @user.items.new
   end
 
